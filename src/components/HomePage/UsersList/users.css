@@ -1,0 +1,36 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.list .user {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  background: #f3f3f3;
+  border: 0;
+  border-radius: 8px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.list .user .user__title {
+  color: #a3a3a3;
+}
+
+.list .user .user__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list .user .user__footer .user__btn {
+  font-size: 12px;
+  border: 0;
+  color: #4b51ef;
+}
