@@ -17,6 +17,7 @@
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
+  transition: 0.5s;
 }
 
 .list .user .user__title {
@@ -30,7 +31,22 @@
 }
 
 .list .user .user__footer .user__btn {
+  background-color: transparent;
   font-size: 12px;
   border: 0;
   color: #4b51ef;
+  transition: 0.5s;
+}
+
+.list .user .user__footer .user__btn:hover {
+  color: darkmagenta;
+}
+
+.list .user:hover {
+  border-radius: 0;
+  background-color: lightgray;
+}
+
+.list .user:hover .user__btn {
+  color: darkorange;
 }
