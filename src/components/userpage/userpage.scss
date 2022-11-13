@@ -1,0 +1,110 @@
+%border {
+  background: #ffffff;
+  border: 1px solid yellowgreen;
+  border-radius: 5px;
+}
+
+.userpage {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+
+  padding: 20px 40px;
+  width: 82vw;
+
+  .userpage__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10%;
+
+    width: 100%;
+
+    .userpage__title {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    .userpage__btn-edit {
+      background: #4b51ef;
+      border: 0;
+      border-radius: 5px;
+      color: white;
+      padding: 5px 15px;
+      transition: 0.5s;
+    }
+  }
+
+  .userpage__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    gap: 10px;
+
+    background: #ffffff;
+    border: 1px solid #f3f3f3;
+    border-radius: 8px;
+    padding: 20px;
+
+    .userpage__input-div {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 9px;
+
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      gap: 10px;
+
+      .userpage__input {
+        @extend %border;
+        transition: 1s;
+      }
+
+      .userpage__input:disabled {
+        border: 1px wheat solid;
+      }
+      .userpage__input:required {
+        border: 1px red solid;
+      }
+
+    }
+
+    .userpage__comment {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .userpage__textarea {
+        transition: 1s;
+        resize: none;
+        width: 100%;
+        @extend %border;
+      }
+
+      .userpage__textarea:disabled {
+        border: 1px wheat solid;
+      }
+    }
+  }
+  .btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    .userpage__btn-submit {
+      background: #52cf4f;
+      border-radius: 5px;
+      color: white;
+      border: 0;
+      width: 85px;
+      height: 25px;
+    }
+  }
+}

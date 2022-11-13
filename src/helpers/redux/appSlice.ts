@@ -4,6 +4,7 @@ import { IState } from 'interfaces/state';
 const initialState: IState = {
   sort: 'by-city',
   userId: '',
+  users: [],
 };
 
 export const appSlice = createSlice({
@@ -16,9 +17,12 @@ export const appSlice = createSlice({
     userIdReducer(state, action) {
       state.userId = action.payload;
     },
+    usersReducer(state, action) {
+      state.users = action.payload;
+    },
   },
 });
 
-export const { sortReducer, userIdReducer } = appSlice.actions;
+export const { sortReducer, userIdReducer, usersReducer } = appSlice.actions;
 
 export default appSlice.reducer;

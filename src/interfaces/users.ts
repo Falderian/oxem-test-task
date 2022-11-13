@@ -22,4 +22,8 @@ export interface IUser {
   };
 }
 
+export interface IUserInput {
+  name: string;
+  value: string;
+}
 export type IUsers = IUser[];

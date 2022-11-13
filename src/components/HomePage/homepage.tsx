@@ -1,27 +1,29 @@
 import { getUsers } from 'api/getUsers';
+import { usersReducer } from 'helpers/redux/appSlice';
 import { IGetState } from 'interfaces/state';
 import { IUsers } from 'interfaces/users';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './homepage.scss';
-import { UsersList } from './UsersList/UsersList';
+import { UsersList } from './userslist/UsersList';
 
 export const HomePage = () => {
   const [users, setUsers] = useState<IUsers>([]);
-
-  const temp = useSelector<IGetState>((state) => state.data.sort.sort);
+  const dispatch = useDispatch();
+  const sort = useSelector<IGetState>((state) => state.data.sort.sort);
 
   useEffect(() => {
     const response = getUsers();
     response.then((data) => {
       const sortedUsers = sortUsers(data);
       setUsers(sortedUsers);
+      dispatch(usersReducer({ sortedUsers }));
     });
-  }, [temp]);
+  }, [sort]);
 
   const sortUsers = (users: IUsers) => {
     let sortedUsers;
-    if (temp === 'by-city') {
+    if (sort === 'by-city') {
       sortedUsers = sortByCity(users);
     } else {
       sortedUsers = sortByCompany(users);

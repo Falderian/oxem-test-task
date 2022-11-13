@@ -1,6 +1,9 @@
+import { IUser, IUsers } from './users';
+
 export interface IState {
   sort: string;
   userId: string;
+  users: IUser[];
 }
 
 export interface IGetState {
@@ -8,5 +11,6 @@ export interface IGetState {
     sort: {
       sort: string;
     };
+    users: { sortedUsers: IUsers };
   };
 }
