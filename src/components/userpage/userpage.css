@@ -71,10 +71,6 @@
   border: 1px wheat solid;
 }
 
-.userpage .userpage__form .userpage__input-div .userpage__input:required {
-  border: 1px red solid;
-}
-
 .userpage .userpage__form .userpage__comment {
   display: flex;
   flex-direction: column;

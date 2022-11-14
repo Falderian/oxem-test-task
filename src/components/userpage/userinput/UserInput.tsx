@@ -5,7 +5,14 @@ export const UserInput = ({ name, value }: IUserInput) => {
   return (
     <div className="userpage__input-div">
       <label className="userpage__label">{name}</label>
-      <input className="userpage__input" type="text" defaultValue={value} required disabled />
+      <input
+        name={name}
+        className="userpage__input"
+        type="text"
+        defaultValue={value}
+        required
+        disabled
+      />
     </div>
   );
 };

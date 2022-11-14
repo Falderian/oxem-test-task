@@ -1,5 +1,5 @@
 import { IGetState } from 'interfaces/state';
-import { IUsers } from 'interfaces/users';
+import { IUser, IUsers } from 'interfaces/users';
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -24,6 +24,42 @@ export const UserPage = () => {
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    const tempUser: IUser = {
+      id: 0,
+      name: '',
+      username: '',
+      email: '',
+      address: {
+        street: '',
+        suite: '',
+        city: '',
+        zipcode: '',
+        geo: {
+          lat: '',
+          lng: '',
+        },
+      },
+      phone: '',
+      website: '',
+      company: {
+        name: '',
+        catchPhrase: '',
+        bs: '',
+      },
+    };
+    tempUser!.name = (
+      evt.currentTarget.elements.namedItem('Name') as HTMLInputElement
+    ).value.toString();
+    tempUser!.username = (
+      evt.currentTarget.elements.namedItem('User name') as HTMLInputElement
+    ).value.toString();
+    tempUser!.email = (
+      evt.currentTarget.elements.namedItem('E-mail') as HTMLInputElement
+    ).value.toString();
+    tempUser!.address!.street = (
+      evt.currentTarget.elements.namedItem('Street') as HTMLInputElement
+    ).value.toString();
+    console.log(tempUser);
   };
 
   return (
