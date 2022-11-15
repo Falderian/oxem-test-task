@@ -8,7 +8,6 @@ import './homepage.scss';
 import { UsersList } from './userslist/UsersList';
 
 export const HomePage = () => {
-  const sort = useSelector<IGetState>((state) => state.data.sort);
   const users = useSelector<IGetState>((state) => state.data.users);
   const dispatch = useDispatch();
 
