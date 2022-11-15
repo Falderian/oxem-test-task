@@ -23,7 +23,7 @@ export const HomePage = () => {
   return (
     <div className="wrapper">
       <div className="header">
-        <span className="header__title">Список пользователей</span>
+        <span className="header__title">List of users</span>
       </div>
       <UsersList />
     </div>
