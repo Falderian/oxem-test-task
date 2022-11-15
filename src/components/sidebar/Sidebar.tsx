@@ -43,7 +43,7 @@ export const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar__cont">
-        <span>Сортировка</span>
+        <span>Sort</span>
         <button
           id="by-city"
           className="sidebar__btn btn-city"
