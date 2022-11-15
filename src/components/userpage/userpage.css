@@ -4,6 +4,15 @@
   border-radius: 5px;
 }
 
+.userpage .userpage__header .userpage__btn-edit:hover, .userpage .btn-wrapper .userpage__btn-submit:hover {
+  background-color: darkmagenta;
+  border-radius: 0px;
+}
+
+.userpage .userpage__header .userpage__btn-edit:active, .userpage .btn-wrapper .userpage__btn-submit:active {
+  background-color: white;
+}
+
 .userpage {
   display: flex;
   gap: 10px;
@@ -68,7 +77,7 @@
 }
 
 .userpage .userpage__form .userpage__input-div .userpage__input:disabled {
-  border: 1px wheat solid;
+  border: 1px white solid;
 }
 
 .userpage .userpage__form .userpage__comment {
@@ -99,4 +108,5 @@
   border: 0;
   width: 85px;
   height: 25px;
+  transition: 0.5s;
 }

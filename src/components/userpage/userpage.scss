@@ -4,6 +4,13 @@
   border-radius: 5px;
 }
 
+%buttonHover {
+  background-color: darkmagenta;
+  border-radius: 0px;
+}
+%buttonActive {
+  background-color: white;
+}
 .userpage {
   display: flex;
   gap: 10px;
@@ -36,6 +43,14 @@
       color: white;
       padding: 5px 15px;
       transition: 0.5s;
+    }
+
+    .userpage__btn-edit:hover {
+      @extend %buttonHover;
+    }
+
+    .userpage__btn-edit:active {
+      @extend %buttonActive;
     }
   }
 
@@ -70,9 +85,8 @@
       }
 
       .userpage__input:disabled {
-        border: 1px wheat solid;
+        border: 1px white solid;
       }
-
     }
 
     .userpage__comment {
@@ -102,6 +116,13 @@
       border: 0;
       width: 85px;
       height: 25px;
+      transition: 0.5s;
+    }
+    .userpage__btn-submit:hover {
+      @extend %buttonHover;
+    }
+    .userpage__btn-submit:active {
+      @extend %buttonActive;
     }
   }
 }

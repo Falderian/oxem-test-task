@@ -1,6 +1,19 @@
+.list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.list::-webkit-scrollbar-track {
+  background-color: #ece6e6;
+}
+
+.list::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
 .list {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   gap: 15px;
 }
 
@@ -36,6 +49,7 @@
   border: 0;
   color: #4b51ef;
   transition: 0.5s;
+  text-decoration: none;
 }
 
 .list .user .user__footer .user__btn:hover {
