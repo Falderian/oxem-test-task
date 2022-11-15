@@ -3,7 +3,29 @@ import { IState } from 'interfaces/state';
 
 const initialState: IState = {
   sort: 'by-city',
-  userId: '',
+  user: {
+    id: -1,
+    name: '',
+    username: '',
+    email: '',
+    address: {
+      street: '',
+      suite: '',
+      city: '',
+      zipcode: '',
+      geo: {
+        lat: '',
+        lng: '',
+      },
+    },
+    phone: '',
+    website: '',
+    company: {
+      name: '',
+      catchPhrase: '',
+      bs: '',
+    },
+  },
   users: [],
 };
 
@@ -14,8 +36,8 @@ export const appSlice = createSlice({
     sortReducer(state, action) {
       state.sort = action.payload;
     },
-    userIdReducer(state, action) {
-      state.userId = action.payload;
+    userReducer(state, action) {
+      state.user = action.payload;
     },
     usersReducer(state, action) {
       state.users = action.payload;
@@ -23,6 +45,6 @@ export const appSlice = createSlice({
   },
 });
 
-export const { sortReducer, userIdReducer, usersReducer } = appSlice.actions;
+export const { sortReducer, userReducer, usersReducer } = appSlice.actions;
 
 export default appSlice.reducer;

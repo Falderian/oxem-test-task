@@ -1,16 +1,20 @@
-import { IGetState } from 'interfaces/state';
+import { usersReducer } from 'helpers/redux/appSlice';
+import { IGetState, IGetStateUser } from 'interfaces/state';
 import { IUser, IUsers } from 'interfaces/users';
-import React, { useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { UserComment } from './usercomment/UserComment';
 import { UserInput } from './userinput/UserInput';
 import './userpage.scss';
 
 export const UserPage = () => {
-  const { id } = useParams();
-  const users = useSelector<IGetState>((state) => state.data.users.sortedUsers) as IUsers;
-  const item = users.find((el) => el.id === Number(id));
+  const users = useSelector<IGetState>((state) => state.data.users) as IUsers;
+  const user = useSelector<IGetState>((state) => state.data.user);
+  const item = (user as IGetStateUser).user as unknown as IUser;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClickBtnEdit = (evt: React.MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
@@ -22,44 +26,36 @@ export const UserPage = () => {
     }
   };
 
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const tempUser: IUser = {
-      id: 0,
-      name: '',
-      username: '',
-      email: '',
-      address: {
-        street: '',
-        suite: '',
-        city: '',
-        zipcode: '',
-        geo: {
-          lat: '',
-          lng: '',
-        },
-      },
-      phone: '',
-      website: '',
-      company: {
-        name: '',
-        catchPhrase: '',
-        bs: '',
-      },
-    };
-    tempUser!.name = (
-      evt.currentTarget.elements.namedItem('Name') as HTMLInputElement
-    ).value.toString();
-    tempUser!.username = (
-      evt.currentTarget.elements.namedItem('User name') as HTMLInputElement
-    ).value.toString();
-    tempUser!.email = (
-      evt.currentTarget.elements.namedItem('E-mail') as HTMLInputElement
-    ).value.toString();
+    await updateUsers(evt);
+    navigate('/');
+  };
+
+  const updateUsers = async (evt: React.FormEvent<HTMLFormElement>) => {
+    const formInputs = evt.currentTarget.elements;
+    const tempUser: IUser = JSON.parse(JSON.stringify(item));
+    tempUser!.name = (formInputs.namedItem('Name') as HTMLInputElement).value.toString();
+    tempUser!.username = (formInputs.namedItem('User name') as HTMLInputElement).value.toString();
+    tempUser!.email = (formInputs.namedItem('E-mail') as HTMLInputElement).value.toString();
     tempUser!.address!.street = (
-      evt.currentTarget.elements.namedItem('Street') as HTMLInputElement
+      formInputs.namedItem('Street') as HTMLInputElement
     ).value.toString();
-    console.log(tempUser);
+    tempUser!.address!.city = (formInputs.namedItem('City') as HTMLInputElement).value.toString();
+    tempUser!.address!.zipcode = (
+      formInputs.namedItem('Zip-code') as HTMLInputElement
+    ).value.toString();
+    tempUser!.phone = (formInputs.namedItem('Phone') as HTMLInputElement).value.toString();
+    tempUser!.website = (formInputs.namedItem('Website') as HTMLInputElement).value.toString();
+    const updatedUsers = replaceOldUserWithUpdated(tempUser);
+    dispatch(usersReducer(updatedUsers));
+  };
+
+  const replaceOldUserWithUpdated = (user: IUser) => {
+    const tempUsers = [...users];
+    const index = users.indexOf(item!);
+    tempUsers[index] = user;
+    return tempUsers;
   };
 
   return (
@@ -80,7 +76,7 @@ export const UserPage = () => {
         <UserInput name="E-mail" value={item!.email} />
         <UserInput name="Street" value={item!.address.street} />
         <UserInput name="City" value={item!.address.city} />
-        <UserInput name="Zip code " value={item!.address.zipcode} />
+        <UserInput name="Zip-code" value={item!.address.zipcode} />
         <UserInput name="Phone" value={item!.phone} />
         <UserInput name="Website" value={item!.website} />
         <UserComment />
