@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Deploy: [open](https://falderian-pet-project-1.netlify.app/user/1).
 
 ## Available Scripts
 
